@@ -1,0 +1,141 @@
+<template>
+  <div id="app">   
+    <router-view />
+  </div>
+</template>
+
+<script>
+export default {
+  components:{
+  }
+}
+</script>
+
+<style>
+long {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+body{
+    background-color:rgb(199, 194, 194);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.menu-lateral{
+    background-color:rgb(24, 24, 24);
+    
+    
+}
+
+/* CSS do Login */
+.height-max{
+    display: flex;
+    height: 100vh;
+}
+.column {
+    flex-direction: column;
+    display: flex;
+}
+.linhas{
+    display: flex;
+    flex-direction: row;
+    
+}
+.linhas .card{
+    margin-right: 15px;
+}
+.card img{
+    width: auto;
+    height: 14rem;
+}
+.flex-centro{
+   
+    display: flex;
+    justify-content: center;
+    
+}
+.flex-centro.align{
+    align-items: center;
+    
+}
+ #login{
+     padding: 8px;
+     margin-top: 5px;
+     width: 400px;
+    border-radius: 3%;
+    background-color: #5d5a6b;
+    color: #fff;
+}
+#login label{
+    margin-left: 5px;
+}
+/* --------- */
+.cadastro{
+    display: flex;
+    padding: 8px;
+     margin-top: 5px;
+     width: 600px;
+    border-radius: 3%;
+    background-color: rgb(24, 24, 24);
+    color: blanchedalmond;
+}
+.menu-lateral a{
+    color: blanchedalmond;
+}
+#cabecalho{
+    align-items: center;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    min-height: 150px;
+    color: white;
+}
+.tabelaControle{
+    text-align: center;
+}
+
+/* Cores basicas */
+.secundaria{
+    background-color: black;
+    color: blanchedalmond ;
+}
+
+
+/* Bolinhas de Status */
+div.bolinha{
+    position: relative;
+    border-radius: 50%;
+    width: 0.5cm;
+    height: 0.5cm;
+    margin: auto;
+    color: transparent;
+    font-size: 1px;
+}
+div.bolinha.vermelha{
+    background-color: red;
+}
+div.bolinha.amarela{
+    background-color: yellow;
+}
+div.bolinha.verde{
+    background-color: green;
+}
+
+</style>
