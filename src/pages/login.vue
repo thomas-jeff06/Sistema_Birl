@@ -8,28 +8,28 @@
                 </div>
 
                 <div id="login">
-                    <form >
+                  
                         <div class=" form-group">
                             <label for="InputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" v-model="user.email">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword1">Password</label>
-                            <input type="password" class="form-control" id="InputPassword1">
+                            <input type="password" class="form-control" v-model="user.senha">
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <div class="linhas">
-                            <button type="button" id="loginButton" class="btn btn-primary mr-4">Entrar</button>
+                            <button @click="login" class="btn btn-primary mr-4">Entrar</button>
                             <!-- tipo button provisorio -->
                             <small id="CadastroHelp" class="form-text text-muted mr-2">Não possui login? </small>
-                            <a type="button" href="/cadastro_cliente" class="button_Cadastro1">Cadastre-se</a>
+                            <router-link to="/cadastro_cliente" class="button_Cadastro1">Cadastre-se</router-link>
                         </div>
-                    </form>
+                    
                 </div>
 
 
@@ -52,8 +52,23 @@
 
 <script>
 export default {
+    name: 'login',
+    data(){
+        return {
+            user: {
+                email : "",
+                senha: ""
+            }
+        };
+    },
+    methods: {
+        login(){
+            console.log(this.user);
+            this.$router.push({
+                path:`/main/${this.user.email}`
+            })
+        }
+    }
 
 }
 </script>
-<style scoped>
-</style>

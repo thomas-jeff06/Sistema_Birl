@@ -1,44 +1,46 @@
 <template>
   <div class="sidebar">
-        <h2>BIRL</h2>
+        <h2 style="font-size:22px" >BIRL</h2>
         <ul class="flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#"> home</a>
+                <router-link to="/main/0" class="nav-link"> home</router-link>
+            </li>
+             <li class="nav-item ">
+                    <a class="nav-link " data-toggle="collapse" href="#alunos" role="button">Alunos</a>
+
+                </li>
+                <div id="alunos" class="collapse">
+                    <a class="dropdown-item" href="cadastro_alunos.html">Cadastrar Novo</a>
+                    <a class="dropdown-item" href="#">Listar</a>
+
+                </div>
+            <li class="nav-item">
+                <router-link to="#" class="nav-link"> Pagamentos</router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#alunos" role="button" >Alunos</a>
+                <router-link to="#" class="nav-link"> Funcionarios</router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> Pagamentos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Funcionarios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Controle</a>
+                <router-link to="#" class="nav-link" href="#"> Controle</router-link>
             </li>
         </ul>
-    <div class="social_media">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
     </div>
 </template>
-
 <script>
+import 'bootstrap/js/dist/util';
+import 'bootstrap/js/dist/alert';
+
 export default {
-    //<div id="alunos" class="collapse"> 
-                //<a class="dropdown-item" href="cadastro_alunos.html">Cadastrar Novo</a>
-  //              <a class="dropdown-item" href="#">Listar</a>
-      //      </div>
+    data(){
+        return 0;
+    }
 }
 </script>
 
 <style>
     .sidebar {
         width: 200px;
-        height: 800px;
+        height: 100%;
         position: fixed;
         background: #5d5a6b;
     }
@@ -54,8 +56,12 @@ export default {
     }
     .nav-item {
         display: block;
+        font-size: 18px;
         width: 200px;
         height: 72px;
+        border: none;
+        color: #bdb8d7;
+        background-color: #5d5a6b;
         border-bottom: 1px solid rgba(0,0,0,0.05);
         border-top: 1px solid rgba(255,255,255,0.05);
     }

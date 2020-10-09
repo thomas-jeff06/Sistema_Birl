@@ -229,7 +229,8 @@ data(){
       if(this.user.nome != null && this.user.cpf != null && this.user.nomeAcademia != null && this.user.cnpj != null && this.user.cep != null && this.user.cidade != null 
         && this.user.email != null && this.user.password != null ){
           this.errors = [];
-            return 0;
+            
+            window.location.href = '/login';
         }
     }
   }

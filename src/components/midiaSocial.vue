@@ -14,7 +14,7 @@ export default {
 
 <style>
     #bar_midia{
-        position: absolute;
+        position: fixed;
         width: 140px;
         height: 40px;
         transform: translateX(-50%);
