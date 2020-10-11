@@ -230,6 +230,8 @@ data(){
         && this.user.email != null && this.user.password != null ){
           this.errors = [];
             
+            this.axios.post('https://localhost:8080/AcademicNetWeb/login1',this.user);
+
             window.location.href = '/login';
         }
     }

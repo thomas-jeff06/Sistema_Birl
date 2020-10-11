@@ -21,11 +21,11 @@
                                         <div class="row">
                                             <div class=" col-md-6 form-group">
                                                 <label for="CPF"> CPF</label>
-                                                <input v-model="user.name" class="form-control" type="text">
+                                                <input v-model="user.cpf" class="form-control" type="text">
                                             </div>
                                             <div class=" col-md-6 form-group">
                                                 <label for="nascimento"> Data de Nascimento</label>
-                                                <input v-model="user.name" class="form-control" type="date">
+                                                <input v-model="user.data" class="form-control" type="date">
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label for="cep"> CEP</label>
-                                                <input v-model="user.name" class="form-control" type="number">
+                                                <input v-model="user.cep" class="form-control" type="number">
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="estado"> Estado</label>
@@ -224,11 +224,12 @@ export default {
             }
             }
 
-            if(this.user.nome != null && this.user.cpf != null && this.user.nomeAcademia != null && this.user.cnpj != null && this.user.cep != null && this.user.cidade != null 
+            if(this.user.nome != null && this.user.cpf != null && this.user.cep != null && this.user.cidade != null 
                 && this.user.email != null && this.user.password != null ){
                 this.errors = [];
                     
                     alert('Aluno Cadastrado !');
+                    this.axios.post('https://localhost:8080/AcademicNetWeb/login1', this.user);
                    
                 }
             }

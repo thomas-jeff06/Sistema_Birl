@@ -10,8 +10,8 @@
 
                 </li>
                 <div id="alunos" class="collapse">
-                    <a class="dropdown-item" href="cadastro_alunos.html">Cadastrar Novo</a>
-                    <a class="dropdown-item" href="#">Listar</a>
+                    <button @click="cadastroChen" class="dropdown-item">Cadastrar Novo</button>
+                    <button @click="listaChen" class="dropdown-item">Listar</button>
 
                 </div>
             <li class="nav-item">
@@ -29,10 +29,27 @@
 <script>
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/alert';
+import "../../public/css/style.css"
+import "../../public/css/navbar.css"
+import "../../public/bootstrap/css/bootstrap.min.css";
 
 export default {
     data(){
         return 0;
+    },
+    methods:{
+        listaChen(){
+            this.$router.push({
+                path:'/listagem/0'
+            })
+        },
+        cadastroChen(){
+             this.$router.push({
+                path:'/cadastro_aluno/0'
+            })
+
+        }
+
     }
 }
 </script>
@@ -54,8 +71,17 @@ export default {
         border-bottom: 1px solid rgba(0,0,0,0.05);
         border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .nav-item {
-        display: block;
+    .dropdown-item{
+        font-size: 15px;
+        width: 200px;
+        height: 36px;
+        border: none;
+        color: #bdb8d7;
+        background-color: #5d5a6b;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-item{
         font-size: 18px;
         width: 200px;
         height: 72px;

@@ -12,7 +12,9 @@
     "bootstrap": "^4.5.2",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
+    "laravel-vue-datatable": "^0.5.14",
     "popper.js": "^1.16.1",
+    "v-datatable-light": "^0.8.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },

@@ -7,7 +7,8 @@ import Login from '../pages/login.vue'
 import Cadastro_Aluno from '../pages/alunos/cadastrar_aluno.vue'
 
 import Cadastro from '../pages/cadastro_cliente.vue';
-import Main from '../pages/main.vue'
+import Main from '../pages/main.vue';
+import Listagem from '../pages/alunos/listagem.vue'
 
 Vue.use(VueRouter)
 
@@ -32,9 +33,14 @@ const routes = [
     component: Main
   },
   {
-    path:'/main/cadastro_aluno/:id',
+    path:'/cadastro_aluno/:id',
     name: Cadastro_Aluno,
     component: Cadastro_Aluno
+  },
+  {
+    path:'/listagem/:id',
+    name: Listagem,
+    component: Listagem
   },
   {
     path:'*',

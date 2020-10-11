@@ -38,14 +38,16 @@
                 <div class="modal-dialog">
                     <div class=" alert alert-danger" role="alert">
                         <div id="Alert1" class=" alert alert-danger" role="alert">
-
-
                         </div>
-                        
-
                     </div>
                 </div>
             </div>
+
+            <p v-if="errors.length" class="erros">
+                <ul>
+                    <li v-for="error in errors" style="color:red" v-bind:key="error.id">{{ error }}</li>
+                </ul>
+            </p>
     </body>
     </div>
 </template>
@@ -55,18 +57,24 @@ export default {
     name: 'login',
     data(){
         return {
-            user: {
-                email : "",
-                senha: ""
-            }
+            user: "",
+            erros: [],
+            status
         };
+    },
+    mounted(){
+        this.axios.post('https://localhost:8080/AcademicNetWeb/login1')
+        .then(response=>(this.status = response))
     },
     methods: {
         login(){
-            console.log(this.user);
-            this.$router.push({
-                path:`/main/${this.user.email}`
-            })
+            if(status == true){
+                this.$router.push({
+                    path:`/main/${this.user.data.id}`
+                })
+            }else {
+                this.erros.push("Email ou Senha Incorretos!")
+            }
         }
     }
 
