@@ -5,8 +5,10 @@ import jQuery from 'jquery';
 import bootstrap from 'bootstrap';
 import axios from 'axios'
 
-Vue.prototype.$http = axios ;
 Vue.config.productionTip = false
+
+Vue.prototype.$http = axios ;
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 new Vue({
   jQuery,

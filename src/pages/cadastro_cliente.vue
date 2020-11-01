@@ -12,7 +12,7 @@
                        <h3>Dados Pessoais</h3> 
                         <div class="form-group">
                             <label for="nome"> Seu nome pessoal</label>
-                            <input v-model="user.nome" name="nome" class="form-control" type="text" >
+                            <input v-model="user.responsavel" name="nome" class="form-control" type="text" >
                         </div>
                         <div class="form-group">
                             <label for="CPF"> CPF</label>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label for="senha"> senha</label>
-                            <input class="form-control" v-model="user.password" type="password" name="senha" id="senha">
+                            <input class="form-control" v-model="user.senha" type="password" name="senha" id="senha">
                         </div>
                         <div class="form-group">
                             <label for="senha_check">confirme sua senha</label>
@@ -94,18 +94,20 @@ export default {
 data(){
   return {
     errors: [],
+    baseURI: "http://localhost:8080/cadastro/add",
     user:{
-      nome: null,
-      cpf: null,
+      responsavel: null,
       nomeAcademia: null,
-      cnpj: null,
-      cep: null,
-      estado: '',
-      cidade: null,
-      logradouro: '',
       email: null,
-      password: null,
+      senha: null,
+      cnpj: null,
+      cpf: null,
+      logradouro: '',
+      cep: null,
+      
     },
+    cidade: null,
+    estado: null,
     passwordEquals: '',
      estados: [
         'AC',
@@ -140,11 +142,10 @@ data(){
 },
   methods:{
     checkForm: function(){
-      console.log(this.user);
 
       this.errors = [];
 
-      if(this.user.nome == null){
+      if(this.user.responsavel == null){
         this.errors.push('O nome é obrigatorio.');
       }
 
@@ -154,7 +155,7 @@ data(){
         var Soma= 0
         var Resto= 0;
         var strCPF = this.user.cpf;
-        console.log('debug010'); 
+         
 
         if(strCPF.length > 11 || strCPF == "00000000000" || strCPF == "11111111111" || strCPF == "22222222222" || strCPF == "33333333333" || 
         strCPF == "44444444444" || strCPF == "55555555555" || strCPF == "66666666666" || strCPF == "77777777777" || strCPF == "88888888888" ||
@@ -202,22 +203,21 @@ data(){
       if(this.user.email == null){
         this.errors.push('O E-mail é obrigatorio.');
       }
-      if(this.user.password == null){
+      if(this.user.senha == null){
         this.errors.push('Senha é obrigatorio.');
       }else
       {
-        var senha = this.user.password;
+        var senha = this.user.senha;
         var senha_reg = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
         if (!new RegExp(senha_reg).test(senha)) {
             this.errors.push(' A senha dever 8 caracteres e pelo menos Uma Letra!');
             return 0;
         } else{
-          var senha1 = this.user.password;
+          var senha1 = this.user.senha;
           var senha2 = this.passwordEquals;
-
+ 
           if (senha1 != senha2) {
-            console.log(senha1 + 'e' + senha2);
-
+          
             this.errors.push('O campo Senha difere!');
             this.passwordEquals = '';
             return 0;
@@ -226,13 +226,20 @@ data(){
       }
       }
 
-      if(this.user.nome != null && this.user.cpf != null && this.user.nomeAcademia != null && this.user.cnpj != null && this.user.cep != null && this.user.cidade != null 
-        && this.user.email != null && this.user.password != null ){
+      if(this.user.responsavel != null && this.user.cpf != null && this.user.nomeAcademia != null && this.user.cnpj != null && this.user.cep != null && this.user.cidade != null 
+        && this.user.email != null && this.user.senha != null ){
           this.errors = [];
-            
-            this.axios.post('https://localhost:8080/AcademicNetWeb/login1',this.user);
+          
+             this.$http.post(this.baseURI, this.user).then((result) => {
+                     this.fun = result.data;
+                    
+                    console.log(this.fun);
 
-            window.location.href = '/login';
+                    alert('cadastrado realizado !');
+                    window.location.href = '/login';
+                  
+            });
+            
         }
     }
   }

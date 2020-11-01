@@ -8,14 +8,19 @@
             <div class="title">
                 <h2>Painel de Controle</h2>
             </div>
+            <div class="form-group">
+                <label for="search">Buscar Aluno</label>
+                <input type="search" class="form-control" v-model="nameBusca">
+            </div>
                 <div class=" flex-centro" >
                     <div class="table flex-centro">
+                        
                             <DataTable
                                 :header-fields="colunas"
-                                :data="users"
+                                :data="userTest"
                             />
                                 <div class="coluna-pagar">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
+                                    <li v-for="user in userTest"  v-bind:key=" user.id">
                                         <div v-if="user.ativo == true">
                                             <div class="bola" style="background-color: rgb(0, 255, 0);"></div>
                                         </div>
@@ -23,18 +28,7 @@
                                             <div class="bola" style="background-color : red" ></div>
                                         </div>
                                     </li>
-                                </div>
-                                <div class="coluna-Editar">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
-                                        <button class="btn btn-info"  >Editar</button>
-                                    </li>
-                                </div>
-
-                                <div class="coluna-Delete">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
-                                        <button class="btn btn-danger" >Deletar </button>
-                                    </li>
-                                </div>
+                                </div>           
                         </div>
                 </div>
         </div>
@@ -42,6 +36,7 @@
 </template>
 
 <script>
+//mostrar alunos e suas informações
 import "bootstrap/dist/js/bootstrap.bundle"
 import "bootstrap/dist/js/bootstrap.min.js"
 import "bootstrap/dist/js/bootstrap.min.js"
@@ -63,43 +58,22 @@ export default {
     },
     data() {
         return {
+            nameBusca : '',
             users: "",
+            baseURI: "http://localhost:8080/api/funs",
             colunas:[
                 'id','name', 'nascimento', 'cpf', 'email', 'senha', 'logradouro', 'cep'
             ]
-            ,userTest: [
-                {
-                    'id': '0',
-                    'name' : 'teste',
-                    'nascimento' : '14/12/2006',
-                    "cpf" : '123321',
-                    'email':'teste@teste.com',
-                    'senha' : '123123',
-                    'logradouro' : 'Rua rua teste',
-                    'cep': '637000000',
-                    'ativo' : false
-                },
-                {
-                    'id': '1',
-                    'name' : 'teste2',
-                    'nascimento' : '17/03/2000',
-                    "cpf" : '123321',
-                    'email':'teste2@teste.com',
-                    'senha' : '321321',
-                    'logradouro' : 'Rua rua teste2',
-                    'cep': '637000000',
-                    'ativo' : true
-                }
-            ]
+           
         }
     },
-    methods:{
-    },
+    methods:{},
     
     mounted(){
-        this.axios 
-            .get('https://localhost:8080/AcademicNetWeb/AlunosServlet')
-            .then(response=>(this.users = response.data))
+         this.$http.get(this.baseURI).then((result) => {
+            this.users = result.data;
+            console.log(this.users);
+            });
         }
 }
 </script>
@@ -122,7 +96,7 @@ export default {
     margin-top: 12px;
 }
 .btn{
-    font-size: 14px;
+    font-size: 13px;
     width: 60px;
     height: 40px;
     margin: 1px 1px 1px 1px ;
@@ -131,11 +105,6 @@ export default {
     position: absolute;
     margin-top: 42px;
     margin-left: 925px;
-}
-.coluna-Delete{
-    position: absolute;
-    margin-left: 800px;
-    margin-top: 42px;
 }
 .table{
     background-color: #b2aed8;

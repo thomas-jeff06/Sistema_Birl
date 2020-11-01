@@ -57,24 +57,24 @@ export default {
     name: 'login',
     data(){
         return {
-            user: "",
-            erros: [],
+            user: {
+                senha: '',
+                email: ''
+            },
+            errors: [],
             status
         };
     },
-    mounted(){
-        this.axios.post('https://localhost:8080/AcademicNetWeb/login1')
-        .then(response=>(this.status = response))
-    },
+
     methods: {
         login(){
-            if(status == true){
+            //if(status == true){
                 this.$router.push({
-                    path:`/main/${this.user.data.id}`
+                    path:`/main`
                 })
-            }else {
-                this.erros.push("Email ou Senha Incorretos!")
-            }
+           // }else {
+                //this.erros.push("Email ou Senha Incorretos!")
+            //}
         }
     }
 

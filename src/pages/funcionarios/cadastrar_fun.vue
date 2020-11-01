@@ -1,22 +1,22 @@
 <template>
-  <div class="main">
-        <Header/>
-        <SideBar/>
-        <MidiaSocial/>
+  <div class="cadastrar_fun">
+      <Header/>
+       <SideBar/>
+      <MidiaSocial/>
 
-        <div class="card-body">
-            <div class="title">
-                <h2>Painel de Controle</h2>
-            </div>
-                    <div class="conteiner">
-                         <form @submit.prevent="checkFormA" action="" >
+      <div class="card-body">
+          <div class="title">
+              <h2>Cadastrar Funcionario</h2>
+          </div>
+                <div class="conteiner">
+                         <form @submit.prevent="checkFormB" action="" >
                             <h5 class="card-title center" >Dados Pessoais</h5>
                                 <div class=" column">
                                     <div>
                                         <br>
                                         <div class="form-group">
                                             <label for="nome"> Nome </label>
-                                            <input v-model="user.nome" class="form-control" type="text" >
+                                            <input v-model="user.name" class="form-control" type="text" >
                                         </div>
                                         <div class="row">
                                             <div class=" col-md-6 form-group">
@@ -25,7 +25,7 @@
                                             </div>
                                             <div class=" col-md-6 form-group">
                                                 <label for="nascimento"> Data de Nascimento</label>
-                                                <input v-model="user.anscimento" class="form-control" type="date">
+                                                <input v-model="user.data" class="form-control" type="date">
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label for="cep"> CEP</label>
-                                                <input v-model="user.cep" class="form-control" type="text">
+                                                <input v-model="user.cep" class="form-control" type="number">
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="estado"> Estado</label>
@@ -55,6 +55,42 @@
                                         <div class="form-group">
                                             <label for="logradouro"> Logradouro</label>
                                             <input v-model="user.logradouro" class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h5 class="card-title"> Controle </h5>
+                            <p class="card-text">
+                                <div class="column">
+                                    <div>
+
+                                        <div class="form-group ">
+                                            <label> Periodo de Trabalho</label> <br>
+                                            <label for="manha">Manhã</label>
+                                            <input type="checkbox" name="periodo">
+                                            <label for="noite">Noite</label>
+                                            <input type="checkbox" name="periodo" id="noite">
+                                            <label for="tarde">Tarde</label>
+                                            <input type="checkbox" name="periodo" id="tarde">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label for="cargo"> Cargo</label>
+                                                <select name="cargo" v-model="cargo">
+                                                    <option value="atendente"> Atendente</option>
+                                                    <option value="personal"> Personal</option>
+                                                    <option value="nutricionista"> Nutricionista</option>
+                                                    <option value="instrutor"> Instrutor</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="modalidade"> Modalidade</label>
+                                                <select name="modalidade" id="modalidade">
+                                                    <option value="estagiario"> Estagiario</option>
+                                                    <option value="efetivo"> Efetivo</option>
+                                                    <option value="contrato"> Contrato</option>
+
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -89,43 +125,42 @@
                                 </div>
                             <div>
                                 <button class="btn btn-success center" type="submit">Cadastrar</button>
-                                <button class="btn btn-warning center" id="limparButton" type="button">Limpar campos</button>
+                                <button class="btn btn-warning center" id="limparButton" type="button">Limpar</button>
                             </div>
                         </form>
-                                 
-                        </div>
-                </div>
+              </div>
+         
+      </div>
   </div>
 </template>
 
 <script>
-    import Header from "../../components/header.vue";
-    import SideBar from "../../components/sideBar.vue";
-    import MidiaSocial from "../../components/midiaSocial";
+
+import Header from "../../components/header";
+import MidiaSocial from "../../components/midiaSocial"
+import SideBar from "../../components/sideBar.vue";
 
 export default {
-    name: "cadasAluno",
-    components :{
+  name: "CadastroFun",
+    components: {
         Header,
-        SideBar,
-        MidiaSocial
+        MidiaSocial,
+        SideBar
     },
     data(){
         return {
-            fun:{},
             errors: [],
             user: {
-                nome: null,
-                nascimento: null,
+                name: null,
                 cpf: null,
-                email:null,
-                senha:null,
+                data: null,
                 cep: null,
-                logradouro: ""
-            }, 
-            cidade: null,
-            estado: "",
-            baseURI: "http://localhost:8080/alunos",
+                estado: "",
+                cidade: null,
+                logradouro: "",
+                email:null,
+                senha:null
+            },
         passwordEquals: '',
         estados: [
             'AC',
@@ -146,6 +181,7 @@ export default {
     },
     methods: {
         checkFormA: function(){
+            console.log(this.user);
 
             this.errors = [];
 
@@ -159,7 +195,7 @@ export default {
                 var Soma= 0
                 var Resto= 0;
                 var strCPF = this.user.cpf;
-             
+                console.log('debug010'); 
 
                 if(strCPF.length > 11 || strCPF == "00000000000" || strCPF == "11111111111" || strCPF == "22222222222" || strCPF == "33333333333" || 
                 strCPF == "44444444444" || strCPF == "55555555555" || strCPF == "66666666666" || strCPF == "77777777777" || strCPF == "88888888888" ||
@@ -201,21 +237,21 @@ export default {
             if(this.user.email == null){
                 this.errors.push('O E-mail é obrigatorio.');
             }
-            if(this.user.senha == null){
+            if(this.user.password == null){
                 this.errors.push('Senha é obrigatorio.');
             }else
             {
-                var senha = this.user.senha;
+                var senha = this.user.password;
                 var senha_reg = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
                 if (!new RegExp(senha_reg).test(senha)) {
                     this.errors.push(' A senha dever 8 caracteres e pelo menos Uma Letra!');
                     return 0;
                 } else{
-                var senha1 = this.user.senha;
+                var senha1 = this.user.password;
                 var senha2 = this.passwordEquals;
 
                 if (senha1 != senha2) {
-
+                    console.log(senha1 + 'e' + senha2);
 
                     this.errors.push('O campo Senha difere!');
                     this.passwordEquals = '';
@@ -226,30 +262,12 @@ export default {
             }
 
             if(this.user.nome != null && this.user.cpf != null && this.user.cep != null && this.user.cidade != null 
-                && this.user.email != null && this.user.senha != null ){
+                && this.user.email != null && this.user.password != null ){
                 this.errors = [];
+                
+                   
                 }
-                     this.$http.post(this.baseURI, this.user).then((result) => {
-                     this.fun = result.data;
-                    
-                    console.log(this.fun);
-
-                    alert('aluno cadastrado');
-                    this.$router.push({
-                    path:'/main'
-                    });
-            });
             }
         }
 }
 </script>
-
-<style>
-.card-body{
-    padding: 30px
-}
-.erros{
-    margin-left: 0px;
-    margin-right: 100px;
-}
-</style>

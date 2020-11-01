@@ -3,25 +3,31 @@
         <h2 style="font-size:22px" >BIRL</h2>
         <ul class="flex-column">
             <li class="nav-item">
-                <router-link to="/main/0" class="nav-link"> home</router-link>
+                <router-link to="/main" class="nav-link"> home</router-link>
             </li>
              <li class="nav-item ">
-                    <a class="nav-link " data-toggle="collapse" href="#alunos" role="button">Alunos</a>
+                    <a class="nav-link " data-toggle="collapse" href="#funcionarios" role="button">Alunos</a>
 
                 </li>
-                <div id="alunos" class="collapse">
+                <div id="funcionarios" class="collapse">
                     <button @click="cadastroChen" class="dropdown-item">Cadastrar Novo</button>
                     <button @click="listaChen" class="dropdown-item">Listar</button>
 
                 </div>
             <li class="nav-item">
-                <router-link to="#" class="nav-link"> Pagamentos</router-link>
+                <router-link to="/paySearch" class="nav-link"> Pagamentos</router-link>
             </li>
+             <li class="nav-item ">
+                    <a class="nav-link " data-toggle="collapse" href="#alunos" role="button">Funcionarios</a>
+
+                </li>
+                <div id="alunos" class="collapse">
+                    <button @click="cadastroFun" class="dropdown-item">Cadastrar Novo</button>
+                    <button @click="listaFun" class="dropdown-item">Listar</button>
+
+                </div>
             <li class="nav-item">
-                <router-link to="#" class="nav-link"> Funcionarios</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link to="#" class="nav-link" href="#"> Controle</router-link>
+                <router-link to="/controle" class="nav-link" href="#"> Controle</router-link>
             </li>
         </ul>
     </div>
@@ -34,20 +40,26 @@ import "../../public/css/navbar.css"
 import "../../public/bootstrap/css/bootstrap.min.css";
 
 export default {
-    data(){
-        return 0;
-    },
     methods:{
         listaChen(){
             this.$router.push({
-                path:'/listagem/0'
+                path:'/listagem'
             })
         },
         cadastroChen(){
              this.$router.push({
-                path:'/cadastro_aluno/0'
+                path:'/cadastro_aluno'
             })
-
+        },
+            listaFun(){
+            this.$router.push({
+                path:'/listar_fun'
+            })
+        },
+        cadastroFun(){
+             this.$router.push({
+                path:'/cadastro_fun'
+            })
         }
 
     }

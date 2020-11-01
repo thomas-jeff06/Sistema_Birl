@@ -1,41 +1,30 @@
 <template>
-    <div class="lista">
-        <Header/>
+  <div class="listar_fun">
+       <Header/>
         <SideBar/>
         <MidiaSocial/>
 
         <div class="card-body">
             <div class="title">
-                <h2>Listagem de Alunos</h2>
+                <h2>Listagem de Funcionarios</h2>
             </div>
             <div class="form-group">
-                <label for="search">Buscar Aluno</label>
+                <label for="search">Buscar Funcionario</label>
                 <input type="search" class="form-control" v-model="nameBusca">
             </div>
                 <div class=" flex-centro" >
                     <div class="table flex-centro">
                             <DataTable
                                 :header-fields="colunas"
-                                :data="users"
+                                :data="funs"
                             />
-                                <div class="coluna-pagar">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
-                                        <div v-if="user.ativo == true">
-                                            <div class="bola" style="background-color: rgb(0, 255, 0);"></div>
-                                        </div>
-                                        <div v-if="user.ativo == false">
-                                            <div class="bola" style="background-color : red" ></div>
-                                        </div>
-                                    </li>
-                                </div>
                                 <div class="coluna-Editar">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
+                                    <li v-for="fun in funs"  v-bind:key=" fun.id">
                                         <button class="btn btn-info"  >Editar</button>
                                     </li>
                                 </div>
-
                                 <div class="coluna-Delete">
-                                    <li v-for="user in users"  v-bind:key=" user.id">
+                                    <li v-for="fun in funs"  v-bind:key=" fun.id">
                                         <button class="btn btn-danger" >Deletar </button>
                                     </li>
 
@@ -64,7 +53,7 @@ export default {
     },
     data() {
         return {
-            users: [],
+            funss: [],
             colunas:[
                 'id','name', 'nascimento', 'cpf', 'email', 'senha', 'logradouro', 'cep'
             ]
@@ -73,11 +62,7 @@ export default {
     mounted(){
     this.axios 
         .get('https://localhost:8080/AcademicNetWeb/AlunosServlet')
-        .then(response=>(this.user = response.data))
+        .then(response=>(this.funs = response.data))
     }
 }
 </script>
-
-<style>
-
-</style>
